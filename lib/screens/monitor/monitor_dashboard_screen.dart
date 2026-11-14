@@ -114,12 +114,16 @@ class _MonitorDashboardScreenState extends ConsumerState<MonitorDashboardScreen>
                           children: [
                             const Text('Lmax Periode', style: TextStyle(fontSize: 12, color: AppTheme.textMuted)),
                             const SizedBox(height: 4),
-                            Text(
-                              lmaxToday > 0 ? '${lmaxToday.toStringAsFixed(1)} dBA' : '--',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppTheme.redHigh,
+                            FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                lmaxToday > 0 ? '${lmaxToday.toStringAsFixed(1)} dBA' : '--',
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppTheme.redHigh,
+                                ),
                               ),
                             ),
                           ],
@@ -137,12 +141,16 @@ class _MonitorDashboardScreenState extends ConsumerState<MonitorDashboardScreen>
                           children: [
                             const Text('Anomali TinyML', style: TextStyle(fontSize: 12, color: AppTheme.textMuted)),
                             const SizedBox(height: 4),
-                            Text(
-                              '$anomalyCount Terdeteksi',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: anomalyCount > 0 ? AppTheme.purpleAnomaly : AppTheme.greenNormal,
+                            FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                '$anomalyCount Terdeteksi',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: anomalyCount > 0 ? AppTheme.purpleAnomaly : AppTheme.greenNormal,
+                                ),
                               ),
                             ),
                           ],

@@ -88,29 +88,36 @@ class _ActiveSessionBannerState extends ConsumerState<ActiveSessionBanner> {
               ),
             ),
             const SizedBox(width: 8),
-            // Tombol Cepat Tambah Catatan
-            ElevatedButton.icon(
-              onPressed: widget.onAddEventPressed,
-              icon: const Icon(Icons.note_add, size: 16),
-              label: const Text('Catat', style: TextStyle(fontSize: 12)),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: AppTheme.darkBlue,
-                minimumSize: const Size(40, 36),
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            // Tombol Aksi Cepat dengan FittedBox agar tidak overflow di layar sempit
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: widget.onAddEventPressed,
+                    icon: const Icon(Icons.note_add, size: 16),
+                    label: const Text('Catat', style: TextStyle(fontSize: 12)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: AppTheme.darkBlue,
+                      minimumSize: const Size(36, 36),
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  ElevatedButton(
+                    onPressed: widget.onEndSessionPressed,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppTheme.redHigh,
+                      foregroundColor: Colors.white,
+                      minimumSize: const Size(36, 36),
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                    ),
+                    child: const Text('Akhiri', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(width: 6),
-            // Tombol Akhiri Sesi
-            ElevatedButton(
-              onPressed: widget.onEndSessionPressed,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.redHigh,
-                foregroundColor: Colors.white,
-                minimumSize: const Size(40, 36),
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-              ),
-              child: const Text('Akhiri', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
             ),
           ],
         ),

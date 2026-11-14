@@ -100,22 +100,24 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
       builder: (dialogCtx) {
         return AlertDialog(
           title: const Text('Tambah Catatan Kejadian'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: titleCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Kejadian (e.g. Bus Trans Semarang melintas)',
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: titleCtrl,
+                  decoration: const InputDecoration(
+                    labelText: 'Kejadian (e.g. Bus Trans Semarang melintas)',
+                  ),
                 ),
-              ),
-              TextField(
-                controller: noteCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Keterangan Tambahan',
+                TextField(
+                  controller: noteCtrl,
+                  decoration: const InputDecoration(
+                    labelText: 'Keterangan Tambahan',
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           actions: [
             TextButton(

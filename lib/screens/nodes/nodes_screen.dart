@@ -75,8 +75,10 @@ class NodesScreen extends ConsumerWidget {
                           Text('Sinyal Wi-Fi: ${node.rssi} dBm | Uptime: ${Formatters.formatDurationSec(node.uptimeSec ?? 0)}',
                               style: const TextStyle(fontSize: 11, color: AppTheme.textMuted)),
                         const Divider(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                        Wrap(
+                          alignment: WrapAlignment.end,
+                          spacing: 8,
+                          runSpacing: 6,
                           children: [
                             OutlinedButton(
                               onPressed: () {
@@ -84,7 +86,6 @@ class NodesScreen extends ConsumerWidget {
                               },
                               child: const Text('Pilih Node', style: TextStyle(fontSize: 12)),
                             ),
-                            const SizedBox(width: 8),
                             ElevatedButton(
                               onPressed: () => _showEditCalibrationDialog(context, ref, node),
                               child: const Text('Kalibrasi', style: TextStyle(fontSize: 12)),
@@ -168,20 +169,22 @@ class NodesScreen extends ConsumerWidget {
       builder: (dialogCtx) {
         return AlertDialog(
           title: Text('Kalibrasi ${node.deviceId}'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: gainCtrl,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                decoration: const InputDecoration(labelText: 'Calib Gain (Faktor Pengali)'),
-              ),
-              TextField(
-                controller: offsetCtrl,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                decoration: const InputDecoration(labelText: 'Calib Offset (dBA)'),
-              ),
-            ],
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: gainCtrl,
+                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  decoration: const InputDecoration(labelText: 'Calib Gain (Faktor Pengali)'),
+                ),
+                TextField(
+                  controller: offsetCtrl,
+                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  decoration: const InputDecoration(labelText: 'Calib Offset (dBA)'),
+                ),
+              ],
+            ),
           ),
           actions: [
             TextButton(

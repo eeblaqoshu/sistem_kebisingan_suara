@@ -226,8 +226,11 @@ class _ReportDetailScreenState extends State<ReportDetailScreen> {
                         events: widget.events,
                       );
                     },
-                    icon: const Icon(Icons.picture_as_pdf),
-                    label: const Text('Unduh PDF 9 Bagian'),
+                    icon: const Icon(Icons.picture_as_pdf, size: 18),
+                    label: const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text('Unduh PDF 9 Bagian'),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -240,8 +243,11 @@ class _ReportDetailScreenState extends State<ReportDetailScreen> {
                         events: widget.events,
                       );
                     },
-                    icon: const Icon(Icons.table_chart),
-                    label: const Text('Unduh CSV'),
+                    icon: const Icon(Icons.table_chart, size: 18),
+                    label: const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text('Unduh CSV'),
+                    ),
                   ),
                 ),
               ],
@@ -274,15 +280,23 @@ class _ReportDetailScreenState extends State<ReportDetailScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: const TextStyle(fontSize: 12, color: AppTheme.textMuted)),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: isBold ? FontWeight.bold : FontWeight.w500,
-              color: highlightColor ?? AppTheme.textDark,
+          Expanded(
+            flex: 4,
+            child: Text(label, style: const TextStyle(fontSize: 12, color: AppTheme.textMuted)),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            flex: 6,
+            child: Text(
+              value,
+              textAlign: TextAlign.end,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: isBold ? FontWeight.bold : FontWeight.w500,
+                color: highlightColor ?? AppTheme.textDark,
+              ),
             ),
           ),
         ],

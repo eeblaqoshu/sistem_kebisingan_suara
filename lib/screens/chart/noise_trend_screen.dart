@@ -29,40 +29,43 @@ class _NoiseTrendScreenState extends ConsumerState<NoiseTrendScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tren & Ambang Batas', style: TextStyle(fontWeight: FontWeight.bold)),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: SegmentedButton<String>(
-              segments: const [
-                ButtonSegment(value: '1 Jam', label: Text('1 Jam', style: TextStyle(fontSize: 11))),
-                ButtonSegment(value: '24 Jam', label: Text('24 Jam', style: TextStyle(fontSize: 11))),
-                ButtonSegment(value: '7 Hari', label: Text('7 Hari', style: TextStyle(fontSize: 11))),
-              ],
-              selected: {_selectedRange},
-              onSelectionChanged: (set) {
-                setState(() => _selectedRange = set.first);
-              },
-            ),
-          ),
-        ],
+        title: const Text('Grafik Tren Kebisingan', style: TextStyle(fontWeight: FontWeight.bold)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Legenda Ambang Batas
-            Row(
+            // Kontrol Rentang Waktu
+            Center(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: SegmentedButton<String>(
+                  segments: const [
+                    ButtonSegment(value: '1 Jam', label: Text('1 Jam', style: TextStyle(fontSize: 12))),
+                    ButtonSegment(value: '24 Jam', label: Text('24 Jam', style: TextStyle(fontSize: 12))),
+                    ButtonSegment(value: '7 Hari', label: Text('7 Hari', style: TextStyle(fontSize: 12))),
+                  ],
+                  selected: {_selectedRange},
+                  onSelectionChanged: (set) {
+                    setState(() => _selectedRange = set.first);
+                  },
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            // Legenda Ambang Batas dengan Wrap agar tidak overflow
+            Wrap(
+              spacing: 12,
+              runSpacing: 6,
               children: [
                 _buildLegendItem('Normal (<55 dBA)', AppTheme.greenNormal),
-                const SizedBox(width: 12),
                 _buildLegendItem('Sedang (55-70 dBA)', AppTheme.yellowMedium),
-                const SizedBox(width: 12),
                 _buildLegendItem('Tinggi (>70 dBA)', AppTheme.redHigh),
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 14),
 
             // Grafik fl_chart
             Expanded(

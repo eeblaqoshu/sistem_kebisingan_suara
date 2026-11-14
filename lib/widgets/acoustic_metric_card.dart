@@ -94,34 +94,38 @@ class AcousticMetricCard extends StatelessWidget {
             ),
             const SizedBox(height: 16),
 
-            // Angka Leq Utama tipografi besar tabular
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.baseline,
-              textBaseline: TextBaseline.alphabetic,
-              children: [
-                Text(
-                  Formatters.formatDb(leq),
-                  style: TextStyle(
-                    fontSize: 54,
-                    fontWeight: FontWeight.w900,
-                    color: color,
-                    fontFeatures: const [FontFeature.tabularFigures()],
+            // Angka Leq Utama tipografi besar tabular (FittedBox mencegah overflow pada layar sempit)
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Text(
+                    Formatters.formatDb(leq),
+                    style: TextStyle(
+                      fontSize: 54,
+                      fontWeight: FontWeight.w900,
+                      color: color,
+                      fontFeatures: const [FontFeature.tabularFigures()],
+                    ),
                   ),
-                ),
-                const SizedBox(width: 8),
-                const Text(
-                  'dBA',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: AppTheme.textMuted,
+                  const SizedBox(width: 8),
+                  const Text(
+                    'dBA',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: AppTheme.textMuted,
+                    ),
                   ),
-                ),
-                const SizedBox(width: 8),
-                trendIcon,
-                const Spacer(),
-                CategoryBadge(category: category, fontSize: 14),
-              ],
+                  const SizedBox(width: 8),
+                  trendIcon,
+                  const SizedBox(width: 16),
+                  CategoryBadge(category: category, fontSize: 14),
+                ],
+              ),
             ),
 
             if (reading?.isAnomaly == true) ...[
